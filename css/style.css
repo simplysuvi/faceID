@@ -163,9 +163,9 @@ input.form-control::placeholder{
 .navbar-nav .nav-link{
 	position:relative
 }
-.navbar .navbar-brand img{
-	width:85px;
-	height:65px
+.navbar .navbar-brand img
+{
+	height:70px;
 }
 @media (min-width: 992px){
 	.navbar-expand-lg .navbar-nav .nav-link{
