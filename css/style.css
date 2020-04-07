@@ -145,7 +145,7 @@ input.form-control::placeholder{
 }
 }
 .nav-menu{
-	padding:1rem 0;
+	padding:0.5rem 0;
 	-webkit-transition:all .3s ease;
 	-o-transition:all .3s ease;
 	transition:all .3s ease
