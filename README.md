@@ -1,3 +1,3 @@
 # Facial recognition based authentication
 
-[Demo](https://simplysuvi.github.io/faceID/)
+Try the [demo](https://simplysuvi.github.io/faceID/)!
