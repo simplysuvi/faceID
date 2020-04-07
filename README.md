@@ -1,5 +1,3 @@
-# faceID.js
-
-![faceID.js logo](./images/logo.png)
+# Facial recognition based authentication
 
 [Demo](https://simplysuvi.github.io/faceID/)
