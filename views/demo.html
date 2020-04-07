@@ -1,0 +1,153 @@
+<!doctype html>
+  <html lang="en">
+
+  <head>
+    <title>faceID.js - iOS-like Face ID authentication on the Web</title>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="faceID.js - iOS-like Face ID authentication on the Web">
+    <meta name="keywords" content="HTML5, AI, artificial intelligence, machine learning, recognition, face ID">
+
+    <!-- Font -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+
+    <!-- 3rd party CSS -->
+    <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+
+    <!-- Main css -->
+    <link href="../css/style.css" rel="stylesheet">
+  </head>
+
+  <body id="body" data-spy="scroll" data-target="#navbar" data-offset="30">
+    <!-- SNAPSHOT MODAL-->
+    <div id="animatedModal">
+      <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+      <div class="close-animatedModal">
+        <button><i class="icono-cross"></i></button>
+      </div>
+    
+      <div class="modal-content">
+        <div id="my_camera"></div>
+
+        <a id="take-snapshot" class="btn btn-primary" role="button" aria-pressed="true">Take A Snapshot</a>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <div class="nav-menu menu-is-open fixed-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <nav class="navbar navbar-dark navbar-expand-lg">
+              <a class="navbar-brand" href="../index.html"><img src="../images/logo.png" class="img-fluid" alt="logo"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span
+                  class="navbar-toggler-icon"></span> </button>
+              <div class="collapse menu-is-open navbar-collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item"> <a class="nav-link" href="../index.html">HOME <span
+                        class="sr-only">(current)</span></a> </li>
+                  <li class="nav-item"> <a class="nav-link active">DEMO 
+                    <span class="sr-only">(current)</span></a> </li>
+                  <li class="nav-item"> <a class="nav-link" href="https://github.com/gusgad/faceID.js"
+                      target="_blank">GITHUB</a> </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USER DATA FORM -->
+    <div class="section mt-5" id="user-data-form">
+      <form class="container">
+        <div class="row pt-4">
+          <div class="col-md-4">
+            <div class="form-group">
+              <h4 class="mb-0">1. Username</h4>
+              <p class="light-font mb-1">Let's choose a username that we will be checking the photo against.</p>
+              <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp"
+                placeholder="pablodiscobar49" required>
+              <span class="username-req">Username is required.</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4 class="mb-0">2. Photo</h4>
+            <p class="light-font mb-1">Take a snapshot or upload a photo that will be associated with your username upon logging in.</p>
+            <!--Call your modal-->
+            <a id="openCameraModal" href="#animatedModal" class="btn btn-primary mb-3" role="button" aria-pressed="true">Take a snapshot</a>
+            <a id="retake" class="btn btn-primary mb-3" role="button" aria-pressed="true">Retake</a>
+            <span class="photo-req">Photo is required.</span>
+            <p class="light-font mb-1 associated-photo">Photo to be associated:</p>
+            <div id="my_result"></div>
+          </div>
+          <div class="col-md-4">
+            <h4 class="mb-0">3. Save the user</h4>
+            <p class="light-font mb-1">Save the user to the imaginary database and follow the next steps.
+            </p>
+            <button id="save-and-process" type="button" class="btn btn-save disabled btn-primary btn-lg btn-block">Save</button> 
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- END -- USER DATA FORM -->
+
+    <!-- PROCESSING -->
+    <div class="section pt-0" id="processing">
+      <div class="container">
+        <div class="section-title">
+          <h3>Processing</h3>
+        </div>
+        <div class="row pt-4">
+          
+          <div class="loader">Loading...</div>
+        </div>
+      </div>
+    </div>
+    <!-- END -- PROCESSING -->
+
+    <!-- SUCCESS -->
+    <div class="section pt-0" id="success">
+      <div class="container">
+        <div class="section-title">
+          <h3>Success</h3>
+        </div>
+        <p style="text-align: center" class="light-font mb-1">Please, head to the <a href="./login.html">Login</a> page to authenticate with your photo! &#x1F609;</p>
+      </div>
+    </div>
+
+    <div class="section pt-0" id="fail">
+      <div class="container">
+        <div class="section-title">
+          <h3>Your face could not be registered. Please, try again with a clearer picture of your face, close to the camera.</h3>
+        </div>
+      </div>
+    </div>
+    <!-- END -- PROCESSING -->
+
+    <footer class="my-5 text-center">
+      <!-- Copyright removal is not prohibited! -->
+      <p class="mb-2"><small>MOBAPP TEMPLATE BY <a
+            href="https://colorlib.com">COLORLIB</a></small></p>
+    </footer>
+
+    <!-- jQuery and Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+    <script src="../js/animatedModal.min.js"></script>
+    <script src="../js/face-api.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/script-demo.js"></script>
+  </body>
+
+</html>
